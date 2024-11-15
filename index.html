@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient Text Toggle with Image</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        
+        /* Container styling */
+        .content-container {
+            display: flex;
+            max-width: 800px;
+            font-family: 'Poppins', sans-serif;
+            margin: 0 auto;
+        }
+        
+        /* Text content styling */
+        .text-container {
+          left: -142px;
+              position: relative;
+            flex: 1;
+            text-align: left;
+        }
+
+        .sada {
+            font-size: 38px;
+            font-weight: 900 !important;
+            cursor: pointer;
+            margin: 20px 0;
+            color: rgba(0, 0, 0, 0.3);
+            transition: color 0.3s ease;
+        }
+        .sada:hover, .sada.active {
+            background-image: linear-gradient(136deg, #FF00FF, #0000FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Content sections styling */
+        .content {
+            display: none;
+            margin-top: 10px;
+        }
+        .content.active {
+            display: block;
+        }
+        .content p {
+            font-size: 16px;
+        }
+
+        /* Buttons styling */
+        .content button {
+            padding: 8px 16px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            background-color: #fff;
+        }
+
+        /* Image container styling */
+        .imgc {
+          max-width: 254% !important;
+           width: 254% !important;
+            flex: 0.5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-left: 20px;
+        }
+        .imgc img {
+          max-width: 254% !important;
+          width: 254% !important;
+            display: none;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .imgc img.active {
+          left: 240px;
+    position: relative;
+    width: 254% !important;
+    display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <div class="text-container">
+            <h1 class="sada active" data-content="content-1" onclick="showContent(1)">Improve Collaboration</h1>
+            <div class="content active" id="content-1">
+                <p><b>Get your teams working together more closely, even if they’re far apart.</b> Centralize
+                    project-related communications in one place, brainstorm ideas with Whiteboards, and draft plans together
+                    with collaborative Docs.</p>
+                <button>Comments</button>
+                <button>Docs</button>
+                <button>WhiteBoards</button>
+                <button>Clips</button>
+            </div>
+            <h1 class="sada" data-content="content-2" onclick="showContent(2)">Enhance visibility</h1>
+            <div class="content" id="content-2">
+                <p><b>Ditch the needless meetings and repetitive updates.</b> With a single source of truth for all ongoing
+                    projects across your entire org, you get a crystal-clear view of what's happening (or not), and who's
+                    responsible.</p>
+                <button>Views</button>
+                <button>Dashboards</button>
+                <button>Reports</button>
+                <button>Goals</button>
+            </div>
+            <h1 class="sada" data-content="content-3" onclick="showContent(3)">Another Text</h1>
+            <div class="content" id="content-3">
+                <p><b>Streamline business processes without breaking a sweat.</b> Whether it's onboarding employees,
+                    handling IT requests, or managing expense reimbursements, you can automate it all with powerful no-code
+                    Automations.</p>
+                <button>Automations</button>
+                <button>Forms</button>
+                <button>Tasks Templates</button>
+                <button>Custom Fields</button>
+            </div>
+        </div>
+
+        <!-- Image container for right-side image display -->
+        <div class="imgc">
+            <img src="https://storage.googleapis.com/msgsndr/33nOgzt8j4gWwzvqpGwH/media/6728f4705bf49038bee289ba.png" id="image-1" class="active" alt="Collaboration Image">
+            <img src="https://storage.googleapis.com/msgsndr/33nOgzt8j4gWwzvqpGwH/media/6728f410de91e10c1d615d2c.png" id="image-2" alt="Visibility Image">
+            <img src="https://storage.googleapis.com/msgsndr/33nOgzt8j4gWwzvqpGwH/media/6728f41084cd837e2c5ccec4.png" id="image-3" alt="Automation Image">
+        </div>
+    </div>
+
+    <script>
+        // Function to show selected content and image
+        function showContent(contentId) {
+            // Hide all content sections and deactivate all headings
+            const contents = document.querySelectorAll('.content');
+            const headings = document.querySelectorAll('.sada');
+            const images = document.querySelectorAll('.imgc img');
+            
+            contents.forEach(content => content.classList.remove('active'));
+            headings.forEach(heading => heading.classList.remove('active'));
+            images.forEach(img => img.classList.remove('active'));
+
+            // Activate the selected heading, content, and image
+            document.querySelector(`.sada[data-content="content-${contentId}"]`).classList.add('active');
+            document.getElementById(`content-${contentId}`).classList.add('active');
+            document.getElementById(`image-${contentId}`).classList.add('active');
+        }
+    </script>
+</body>
+</html>
